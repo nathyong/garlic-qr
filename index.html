@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>autoQR</title>
+        <script type="text/javascript" src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    </head>
+    <body style="font-size: 200%;">
+        <div style="display: flex; padding: 1em;">
+            <div>
+                <div id="qrcode"></div>
+            </div>
+            <div style="flex-grow: 1; padding: 0 2em;">
+                <h1 id="text" contenteditable="">edit me</h1>
+                <ol>
+                    <li>scan the QR code or navigate to the website</li>
+                    <li>pick a name for yourself</li>
+                    <li>click "yes"</li>
+                </ol>
+            </div>
+        </div>
+        <script type="text/javascript">
+            "use strict";
+            var qrcode = new QRCode(document.getElementById("qrcode"), {"text": document.getElementById("text").innerText, "width": 500, "height": 500});
+            function update() {
+                            qrcode.clear();
+                            qrcode.makeCode(document.getElementById("text").innerText);
+                        }
+            update();
+            document.getElementById("text").addEventListener("input", function() {
+                            update();
+                        });
+        </script>
+    </body>
+</html>
